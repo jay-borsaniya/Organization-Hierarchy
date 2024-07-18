@@ -32,3 +32,7 @@
 .profile-img {
   object-fit: cover;
 }
+
+.card {
+  cursor: pointer;
+}
