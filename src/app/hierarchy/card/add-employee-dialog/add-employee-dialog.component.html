@@ -1,0 +1,217 @@
+<div class="flex min-h-full flex-col justify-center px-4 py-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+
+    <h2
+      class="mt-2 text-center text-2xl font-bold leading-9 tracking-wider text-gray-900"
+      *ngIf="type === 'add'"
+    >
+      Add Subordinate
+    </h2>
+
+    <h2
+      class="mt-2 text-center text-2xl font-bold leading-9 tracking-wider text-gray-900"
+      *ngIf="type === 'change'"
+    >
+      Change Owner
+    </h2>
+
+    <h2
+      class="mt-2 text-center text-2xl font-bold leading-9 tracking-wider text-gray-900"
+      *ngIf="type === 'remove'"
+    >
+      Remove Employee
+    </h2>
+  </div>
+
+  <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form class="space-y-6" [formGroup]="form" *ngIf="type === 'add'">
+      <div>
+        <label
+          for="id"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Id</label
+        >
+        <div class="mt-1">
+          <input
+            id="id"
+            name="id"
+            type="text"
+            class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-gray-600 focus:outline-indigo-600 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            formControlName="id"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label
+          for="name"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Name</label
+        >
+        <div class="mt-1">
+          <input
+            id="name"
+            name="name"
+            type="text"
+            maxlength="20"
+            class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-gray-600 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            formControlName="name"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label
+          for="manager-id"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Manager Id</label
+        >
+        <div class="mt-1">
+          <input
+            id="manager-id"
+            name="manager-id"
+            type="text"
+            class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-gray-600 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            formControlName="managerId"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label
+          for="image-url"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Image Url</label
+        >
+        <div class="mt-1">
+          <input
+            id="image-url"
+            name="image-url"
+            type="text"
+            class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-gray-600 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            formControlName="imageUrl"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label
+          for="email"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Email</label
+        >
+        <div class="mt-1">
+          <input
+            id="email"
+            name="email"
+            type="email"
+            maxlength="20"
+            autocomplete="email"
+            class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-gray-600 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            formControlName="email"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label
+          for="designation"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Designation</label
+        >
+        <div class="mt-1">
+          <input
+            id="designation"
+            name="designation"
+            type="text"
+            maxlength="10"
+            class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-gray-600 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            formControlName="designation"
+          />
+        </div>
+      </div>
+
+      <div class="flex gap-2">
+        <button
+          type="button"
+          (click)="onCancel()"
+          class="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          (click)="onSubmit()"
+          class="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+          [disabled]="!form.valid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+
+    <form class="space-y-6" [formGroup]="form" *ngIf="type === 'change'">
+      <div>
+        <label
+          for="owner"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Select Owner</label
+        >
+        <div class="mt-1">
+          <select
+            id="owner"
+            name="owner"
+            class="bg-transparent block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-gray-600 focus:ring-1 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+            formControlName="owner"
+            required
+          >
+            <option
+              *ngFor="let employee of employeeList"
+              value="{{ employee.id }}"
+            >
+              {{ employee.email }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex gap-2">
+        <button
+          type="button"
+          (click)="onCancel()"
+          class="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          (click)="onSubmit()"
+          class="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+          [disabled]="!form.valid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+
+    <div class="space-y-6" *ngIf="type === 'remove'">
+      <p class="text-center text-lg">Are you sure to remove ?</p>
+      <div class="flex gap-2">
+        <button
+          type="button"
+          (click)="onCancel()"
+          class="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          (click)="onSubmit(true)"
+          class="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

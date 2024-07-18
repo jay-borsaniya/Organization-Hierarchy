@@ -1,0 +1,53 @@
+<div class="node w-full">
+  <div class="flex flex-wrap">
+    <div
+      *ngFor="let child of employesData"
+      class="card max-w-sm rounded overflow-hidden shadow-lg bg-white mx-auto m-12 vr-before w-[350px]"
+      (click)="toggleSubordinates(child)"
+      [ngClass]="{
+        'vr-after': isOpen(child.id) && subordinates?.length > 0
+      }"
+    >
+      <div class="flex items-center p-2">
+        <img
+          class="w-16 h-16 rounded-full mx-4 profile-img"
+          [src]="child.imageUrl"
+          alt="User Image"
+        />
+        <div class="text-left">
+          <div class="font-bold text-xl">{{ child.name }}</div>
+          <p class="text-gray-700">Email: {{ child.email }}</p>
+          <p class="text-gray-700">Designation: {{ child.designation }}</p>
+          <p class="text-gray-700">
+            Subordinates: {{ child.subordinates?.length || 0 }}
+          </p>
+        </div>
+      </div>
+
+      <div class="flex justify-between px-4 py-2">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          (click)="onAdd($event, child.id)"
+        >
+          Add
+        </button>
+        <button
+          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          (click)="onRemove($event, child.id)"
+          *ngIf="!child.subordinates || child.subordinates.length === 0"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="subordinates?.length > 0 && isOpen(employeeData.id)">
+    <div class="children border-t-2 border-[#cbd5e0] flex space-between">
+      <app-child-card
+        class="w-full flex space-center"
+        [employesData]="subordinates"
+      ></app-child-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.hr {
+    position: relative;
+}
+
+.hr::after {
+  content: "";
+  height: 5;
+  width: 100%;
+  border: 1px solid #cbd5e0;
+
+  position: absolute;
+  bottom: -50px;
+}

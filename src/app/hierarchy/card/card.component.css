@@ -1,0 +1,34 @@
+.vr-after {
+  position: relative;
+  overflow: visible;
+}
+
+.vr-before::before {
+  content: "";
+  height: 50px;
+  border: 1px solid #cbd5e0;
+
+  position: absolute;
+  top: -100px;
+  margin-top: 50px;
+  left: 50%;
+}
+
+.vr-before {
+  position: relative;
+  overflow: visible;
+}
+
+.vr-after::after {
+  content: "";
+  height: 50px;
+  border: 1px solid #cbd5e0;
+
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+}
+
+.profile-img {
+  object-fit: cover;
+}

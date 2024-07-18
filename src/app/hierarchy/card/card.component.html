@@ -1,0 +1,55 @@
+
+<div class="tree flex justify-around w-full">
+  <div class="node w-full">
+    <div>
+      <div
+        class="card max-w-sm rounded overflow-hidden shadow-lg bg-white mx-auto m-12 w-[350px]"
+        (click)="toggleSubordinates(owner)"
+        [ngClass]="{
+          'vr-after': isOpen(owner.id)
+        }"
+      >
+        <div class="flex items-center p-2">
+          <img
+            class="w-16 h-16 rounded-full mx-4 profile-img"
+            src="{{ owner?.imageUrl }}"
+            alt="User Image"
+          />
+          <div class="text-left">
+            <div class="font-bold text-xl">{{ owner?.name }}</div>
+            <p class="text-gray-700">Email: {{ owner?.email }}</p>
+            <p class="text-gray-700">Designation: {{ owner?.designation }}</p>
+            <p class="text-gray-700">
+              Subordinates: {{ owner?.subordinates?.length || 0 }}
+            </p>
+          </div>
+        </div>
+        <div class="flex justify-between px-4 py-2">
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            (click)="onAdd($event, owner?.id)"
+          >
+            Add
+          </button>
+          <button
+            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+            (click)="onChange($event, owner?.id)"
+          >
+            Change
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="subordinates?.length > 0 && isOpen(employeeData.id)">
+      <div
+        class="children border-t-2 border-[#cbd5e0] flex space-between w-full"
+      >
+        <app-child-card
+          class="w-full flex space-center"
+          [employesData]="subordinates"
+        ></app-child-card>
+      </div>
+    </div>
+  </div>
+</div>
